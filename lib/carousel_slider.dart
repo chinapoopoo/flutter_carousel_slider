@@ -33,9 +33,9 @@ class CarouselSlider extends StatefulWidget {
   CarouselSlider({
     @required
     this.items,
-    this.viewportFraction: 0.8,
+    this.viewportFraction: 1.0,
     this.initialPage: 0,
-    this.aspectRatio: 16/9,
+    this.aspectRatio: 1,
     this.height,
     this.realPage: 10000,
     this.autoPlay: false,
@@ -133,9 +133,9 @@ class _CarouselSliderState extends State<CarouselSlider> with TickerProviderStat
           return AnimatedBuilder(
             animation: widget.pageController,
             builder: (BuildContext context, child) {
-              // on the first render, the pageController.page is null, 
+              // on the first render, the pageController.page is null,
               // this is a dirty hack
-              if (widget.pageController.position.minScrollExtent == null 
+              if (widget.pageController.position.minScrollExtent == null
                 || widget.pageController.position.maxScrollExtent == null) {
                 Future.delayed(Duration(microseconds: 1), () {
                   setState(() {});
@@ -150,7 +150,7 @@ class _CarouselSliderState extends State<CarouselSlider> with TickerProviderStat
 
               return Center(
                 child: SizedBox(
-                  height: distortionValue * height,
+                  height: height,
                   child: child
                 )
               );
